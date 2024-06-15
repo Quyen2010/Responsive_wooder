@@ -1,0 +1,16 @@
+
+@import 'core/reset';
+@import 'core/mixins';
+@import 'core/variables';
+
+@import 'core/layout';
+@import 'core/components';
+@import 'core/libs';
+
+
+// navigation , header, footer
+@import 'core/header';
+@import 'core/nav';
+@import 'core/footer';
+// page
+@import 'pages/home';

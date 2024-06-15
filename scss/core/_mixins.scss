@@ -1,0 +1,210 @@
+// MIXINS
+//laptop lớn , screen <= 1440px(tùy yêu cầu thiết kế)
+@mixin lg{
+    @media screen and (max-width:1140px) {
+        @content;
+    }
+}
+//laptopn nhỏ hoặc tablet lớn , scrren < 1200px
+@mixin md{
+    @media  screen and (max-width:1199.98px) {
+        @content;
+    }
+}
+// tablets vưa, screen <= 992px
+@mixin sm{
+    @media screen and (max-width:991.98px) {
+        @content;
+    }
+}
+// tablets nhỏ hoặc Phones quay ngang, screen <768px
+@mixin xs{
+    @media screen and (max-width:767.98px) {
+        @content;
+    }
+}
+// Phones lớn , screen <576px
+@mixin xxs{
+    @media screen and (max-width:575.98px) {
+        @content;
+    }
+}
+// IPhone nhỏ , screen <376px - tùy yêu cầu
+@mixin xxxs{
+    @media screen and (max-width:375.98px) {
+        @content;
+    }
+}
+// Landscape
+@mixin landscape{
+    @media  screen and ( orientation:landscape) {
+        @content;
+    }
+}
+// media max min
+@mixin maxw($args){
+    @media (max-width:$args) {
+        @content;
+    }
+}
+@mixin minw($args){
+    @media (min-width:$args){
+        @content;
+    }
+}
+@mixin minH($args){
+    @media (min-height: $args){
+        @content;
+    }
+}
+@mixin maxH($args){
+    @media (max-height:$args){
+        @content;
+    }
+}
+// css anomation -transition 
+@mixin keyframes($animation-name){
+    @-webkit-keyframes #{$animation-name}{
+        @content;
+    }
+    @-moz-keyframes #{$animation-name}{
+        @content;
+    }
+    @-ms-keyframes #{$animation-name}{
+        @content;
+    }
+    @-o-keyframes #{$animation-name}{
+        @content;
+    }
+    @keyframes #{$animation-name}{
+        @content;
+    }
+}
+@mixin animation($str){
+    animation: #{$str};
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation:#{$str};
+    -o-animation: #{$str};
+}
+@mixin animation-delay($str){
+    animation-delay: #{$str};
+    -webkit-animation-delay: #{$str};
+    -moz-animation-delay: #{$str};
+    -ms-animation-delay:#{$str};
+    -o-animation-delay: #{$str};
+}
+@mixin transform($args) {
+    transform: $args;
+    -webkit-transform: $args;
+    -o-transform: $args;
+}
+
+@mixin transform-origin($args) {
+    transform-origin: $args;
+    -webkit-transform-origin: $args;
+    -o-transform-origin: $args;
+}
+@mixin transition($args){
+    transition: $args;
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -ms-transition:$args;
+    -o-transition: $args;
+}
+@mixin transition-delay($args){
+    transition-delay: $args;
+    -webkit-transition-delay: $args;
+    -moz-transition-delay: $args;
+    -ms-transition-delay:$args;
+    -o-transition-delay: $args;
+}
+// css text
+
+@mixin text($font-size, $font-family, $line-height, $color, $text-transform:none) {
+    font-size: $font-size;
+    font-family: $font-family;
+    line-height: $line-height;
+    color: $color;
+    text-transform: $text-transform;
+}
+// middle object 
+@mixin mid ($flex:false){
+    @if($flex == false){
+        top:50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+        position: absolute;
+    }@else{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+// middle ing
+@mixin midimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    @include mid;
+}
+// fullscreen
+@mixin fullscreen($fixed:false){
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    @if $fixed{
+        position: fixed;
+    }@else{
+        position: absolute;
+    }
+}
+// visible
+@mixin visible($param){
+    @if($param == 1){
+        opacity: 1;
+        visibility: visible;
+    }@else{
+        opacity: 0;
+        visibility: hidden;
+        // pointer-events: none;
+    }
+}
+
+// border radius 
+@mixin br($radius){
+    border-radius: $radius;
+    background-clip: padding-box;
+}
+
+// size div
+@mixin size($w , $h : $w, $circle: false){
+    width: $w;
+    height: $h;
+    @if $circle{
+        border-radius: 100%;
+    }
+}
+// overflow text Dots
+@mixin overtext($lines) {
+    display: -webkit-inline-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // dau 3 cham 
+}
+// customize Scroll Dots
+@mixin customscroll($width: 5px, $bgTrack: #ddd, $bgThumb: #121212) {
+    &::-webkit-scrollbar {
+        width: $width;
+    }
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: $bgThumb;
+    }
+}

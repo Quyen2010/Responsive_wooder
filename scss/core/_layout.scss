@@ -1,0 +1,52 @@
+html{
+    font-size: 62.5%;//1rem  = 10px
+}
+body {
+    width: 100%;
+    max-width: var(--max-width-page);
+    margin: auto;
+    scroll-behavior: smooth;
+    letter-spacing: 0.04em; //4 %
+    font-size: var(fs-body-text);
+    font-family: pr;
+    line-height: var(--lh-body-text);
+    &.--disable-scroll{
+        height: 100vh;
+        overflow: hidden;
+    }
+    .container-fluid{
+        width: 100%;
+        max-width: var(--max-width-container-fluid);
+        padding-left: var(--gap);
+        padding-right: var(--gap);
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+    }
+    .container{
+        width: 100%;
+        max-width: var(--max-width-container);
+        padding-right: var(--gap);
+        padding-left: var(--gap);
+        margin-right: auto;
+        margin-left: auto;
+        position: relative;
+    }
+    .main {
+        position: relative;
+        section{
+            padding: var(--pd-section) 0;
+        }
+        @include xs{
+            section{
+                padding: var(--pd-section) 0;
+            }
+        }
+    }
+    @include xs{
+        .container, .container-fluid{
+            padding-right: calc(var(--gap) + 5px); //15px
+            padding-left: calc(var(--gap) + 5px);
+        }
+    }
+}

@@ -1,0 +1,190 @@
+.header{
+    height: var(--height-header);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    &.active{
+        background: var(--bg-header);
+    }
+    .container-fluid {
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .logo {
+            a {
+                display: flex;
+            }
+        }
+        .menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 100%;
+            display: flex;
+            @include transition(--durable);
+            li {
+                height: 100%;
+                a {
+                    @include mid(true);
+                    @include text(var(--fs-body-text),pb,var(--lh-body-text),var(--white-cl), uppercase);
+                    height: 100%;
+                    position: relative;
+                    margin: 0 20px;
+                    @include transition(--durable);
+                    &.active {
+                        opacity: 1;
+                        visibility: visible;
+                        &::after {
+                            content: '';
+                            width: 100%;
+                            height: 2px;
+                            position: absolute;
+                            left: 0;
+                            bottom: 25px;
+                            background-color: var(--yellow-cl);
+                    
+                            // transform: scaleX(0);
+                            // background-color: var(--yellow-cl);
+                            // @include transform-origin(right);
+                            // transition: var(--durable) transform, var(--durable) background-color;
+                            // -webkit-transition: var(--durable) transform, var(--durable) background-color;
+                            // -o-transition: var(--durable) transform, var(--durable) background-color;
+                            // transition: cubic-bezier(0.92, .02, .48, .91);
+                        }
+                    }
+                  
+                    // &:hover {
+                    //     &::after{
+                    //         transform: scaleX(1) ;
+                    //         @include transform-origin(left );
+                    //         @include transition(--durable);
+                    //         // transition: cubic-bezier(0.92, .02, .48, .91);
+                    //     }
+                    // }
+                }
+            }
+        }
+        .right {
+            display: flex;
+            align-items: center;
+            .lang {
+                position: relative;
+                height: 100%;
+                cursor: pointer;
+                align-items: center;
+                &.active{
+                    .lang__option{
+                        @include visible(1);
+                        // opacity: 1;
+                        // visibility: visible;
+                    }
+                    .lang-current{
+                        a{
+                            @include transform(rotateX(180deg));
+                        }
+                    }
+                }
+                .lang-current {
+                    @include mid(true);
+                    span {
+                        color: var(--white-cl);
+                        margin-right: 5px;
+                        padding: 10px;
+                        font-weight: pb;
+                        font-size: var(--fs-body-text-small);
+                        line-height: var(--lh-body-text-small);
+                    }
+                }
+                .lang__option{
+                    width: 100%;
+                    height: auto;
+                    position: absolute;
+                    text-align:left;
+                    opacity: 0;
+                    visibility: hidden;
+                    .lang__option-item{
+                        color: var(--black-cl);
+                        background-color: var(--white-cl);
+                        font-family: pb;                 
+                        padding: 10px ;
+                        font-size: var(--fs-body-text-small);
+                        line-height: var(--lh-body-text-small);
+                        @include transition(var(--durable));
+                        &:hover {
+                            @include transition(var(--durable));
+                            background-color: var(--cl);
+                            color:var(--yellow-cl);
+                        }
+                    }
+                }
+            }
+        }
+        .btnmenu{
+            display: none;
+            width: 40px;
+            height: 22px;
+            position: relative;
+            z-index: 2;
+            margin-left: 10px;
+            cursor: pointer;
+            @include transition(var(--durable));
+            span{
+                width: 100%;
+                height: 2px;
+                display: block;
+                background: var(--yellow-cl);
+                position: absolute;
+                top: 50%;
+                @include transform(translateY(-50%));
+                @include transition(var(--durable));
+            }
+            &::before, &::after{
+                content: ' ';
+                width: 100%;
+                height: 2px;
+                display: block;
+                background: var(--yellow-cl);
+                @include transform(rotate(0deg) translateY(0px));
+                @include transition(transform(--durable));
+            }
+            &::after{
+                position: absolute;
+                bottom: 0;
+            }
+            &.clicked{
+                @include transition(var(--durable));
+                &:before{
+                    @include transform(rotate(45deg) translate(9px, 4px));
+                    @include transition(transform(var(--durable)));
+                }
+                &::after{
+                    @include transform(rotate(-45deg) translate(9px, -4px));
+                    @include transition(transform(var(--durable)));
+                }
+                span{
+                    opacity: 0;
+                    @include transition(var(--durable));
+                }
+            }
+        }
+    }
+    @include sm{
+        .container-fluid{
+            .menu{
+                display: none;
+            }
+            .right{
+                display: inline-flex;
+            }
+            .btnmenu{
+                display: block;
+            }
+        }
+    }
+    @include xs{
+        height: var(--height-header);
+    }
+}
